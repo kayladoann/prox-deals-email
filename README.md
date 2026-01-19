@@ -243,14 +243,8 @@ npm run typecheck
 
 ✅ Completed in 0.15s
 ```
+<img width="625" height="797" alt="Screenshot 2026-01-19 at 3 08 44 PM" src="https://github.com/user-attachments/assets/c8e59c0e-2867-436a-af9e-9013bb03d92e" />
 
-## 🎨 Brand Colors
-
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Primary | `#0FB872` | Buttons, links, highlights |
-| Dark | `#0A4D3C` | Headers, text emphasis |
-| Background | `#F4FBF8` | Email background |
 
 ## 🔮 What I'd Build Next (2 More Days)
 
@@ -286,11 +280,3 @@ npm run typecheck
 # Run with test data
 npm run send:weekly -- --dry-run
 ```
-
-## 📝 License
-
-ISC
-
----
-
-Built for the Prox Software Engineering Intern Technical Assessment
