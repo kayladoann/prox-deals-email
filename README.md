@@ -125,31 +125,6 @@ npm run preview
 | `RESEND_API_KEY` | Resend API key | - |
 | `FROM_EMAIL` | Sender email address | `deals@joinprox.com` |
 
-### Using Supabase
-
-1. Create a new Supabase project
-2. Run the schema SQL in `src/db/schema.sql` via the SQL editor
-3. Update your `.env`:
-
-```env
-DB_TYPE=supabase
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your-anon-key
-```
-
-### Using Resend
-
-1. Sign up at [resend.com](https://resend.com)
-2. Verify your domain or use the sandbox
-3. Get your API key
-4. Update your `.env`:
-
-```env
-EMAIL_PROVIDER=resend
-RESEND_API_KEY=re_your_api_key
-FROM_EMAIL=deals@yourdomain.com
-```
-
 ## 📧 CLI Commands
 
 ### Main Command: `npm run send:weekly`
