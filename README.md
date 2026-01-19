@@ -6,15 +6,6 @@ An automated system that ingests weekly deal data, stores it in a database, and 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
 ![License](https://img.shields.io/badge/License-ISC-yellow)
 
-## ✨ Features
-
-- **Data Ingestion**: Load deal data from JSON with automatic deduplication
-- **Flexible Database**: Works with SQLite (local) or Supabase (production)
-- **Personalized Emails**: Filter deals based on user's preferred retailers
-- **Branded Templates**: Professional HTML emails with Prox brand colors
-- **Plain Text Fallback**: Accessible email for all clients
-- **CLI Automation**: Single command to run the entire pipeline
-
 ## 📁 Project Structure
 
 ```
@@ -245,20 +236,6 @@ npm run typecheck
 ```
 <img width="625" height="797" alt="Screenshot 2026-01-19 at 3 08 44 PM" src="https://github.com/user-attachments/assets/c8e59c0e-2867-436a-af9e-9013bb03d92e" />
 
-
-## 🔮 What I'd Build Next (2 More Days)
-
-### Day 1: Web Dashboard & Scraper
-- **Admin Dashboard**: Simple React/Next.js app showing deal stats, user engagement, and email history
-- **Basic Scraper**: Puppeteer-based scraper for one retailer (e.g., Ralphs) that outputs the standard JSON format
-- **Price History**: Track price changes over time for trending/alert features
-
-### Day 2: Enhanced Features
-- **Price-per-unit**: Parse sizes and calculate comparable unit prices (e.g., $/oz)
-- **Deal Scoring**: Algorithm to rank deals by value, not just absolute price
-- **Scheduling**: Cron job integration for automated weekly sends
-- **User Preferences UI**: Simple web form to manage retailer preferences and email frequency
-
 ## 🤔 Tradeoffs & Decisions
 
 1. **SQLite as default**: Chose SQLite for zero-config local development. Supabase support is fully implemented for production deployment.
@@ -271,12 +248,3 @@ npm run typecheck
 
 5. **No authentication**: This is a backend service; user management would be handled by a separate auth system in production.
 
-## 🧪 Testing
-
-```bash
-# Type checking
-npm run typecheck
-
-# Run with test data
-npm run send:weekly -- --dry-run
-```
