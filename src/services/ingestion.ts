@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import chalk from 'chalk';
 import { getDatabase } from '../db/client.js';
-import type { RawDeal, IngestionResult } from '../types.js';
+import type { RawDeal, RawUser, IngestionResult } from '../types.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,6 +13,33 @@ export async function ingestDealsFromFile(filePath?: string): Promise<IngestionR
   const rawDeals: RawDeal[] = JSON.parse(readFileSync(dealsPath, 'utf-8'));
   
   return ingestDeals(rawDeals);
+}
+
+export async function seedUsersFromFile(filePath?: string): Promise<{ inserted: number; existing: number }> {
+  const usersPath = filePath || join(__dirname, '../../data/users.json');
+  const rawUsers: RawUser[] = JSON.parse(readFileSync(usersPath, 'utf-8'));
+  
+  const db = await getDatabase();
+  const result = { inserted: 0, existing: 0 };
+  
+  console.log(chalk.blue(`\n👥 Processing ${rawUsers.length} users...`));
+  
+  for (const user of rawUsers) {
+    const existingUser = await db.getUserByEmail(user.email);
+    if (existingUser) {
+      result.existing++;
+    } else {
+      await db.insertUser(user.name, user.email, user.preferred_retailers);
+      result.inserted++;
+      console.log(chalk.green(`  ✓ New user: ${user.name} (${user.email})`));
+    }
+  }
+  
+  if (result.inserted === 0 && result.existing > 0) {
+    console.log(chalk.gray(`  ⏭ All ${result.existing} users already exist`));
+  }
+  
+  return result;
 }
 
 export async function ingestDeals(rawDeals: RawDeal[]): Promise<IngestionResult> {

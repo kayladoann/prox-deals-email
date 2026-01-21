@@ -4,7 +4,7 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import config, { validateConfig } from '../config.js';
 import { getDatabase, closeDatabase } from '../db/client.js';
-import { ingestDealsFromFile, formatIngestionResult } from '../services/ingestion.js';
+import { ingestDealsFromFile, seedUsersFromFile, formatIngestionResult } from '../services/ingestion.js';
 import { sendWeeklyEmails, formatEmailResults } from '../services/email.js';
 
 const program = new Command();
@@ -58,6 +58,9 @@ program
         console.log(chalk.bold.blue('\n━━━ STEP 1: DATA INGESTION ━━━'));
         const ingestionResult = await ingestDealsFromFile(options.deals);
         console.log(formatIngestionResult(ingestionResult));
+        
+        // Also seed users
+        await seedUsersFromFile();
       } else {
         console.log(chalk.gray('\n⏭ Skipping data ingestion (--skip-ingest)'));
       }
